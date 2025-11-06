@@ -1,14 +1,20 @@
 # THM — Border mutation with 10k common passwords
 
 **Objective:**  
-Use the top **10,000** most used password list from SecLists (`/usr/share/seclists/Passwords/Common-Credentials/10k-most-common.txt`) and generate a *border mutation* by appending all 2 digits combinations (`00`–`99`) to each password. Then crack the SHA‑1 hash `2d5c517a4f7a14dcb38329d228a7d18a3b78ce83` using John the Ripper with a custom rule.
+Use the top **10,000** most used password list from [![SecLists](https://img.shields.io/badge/SecLists-visit-blue?style=for-the-badge)](https://github.com/danielmiessler/SecLists#install) (`/usr/share/seclists/Passwords/Common-Credentials/10k-most-common.txt`) and generate a *border mutation* by appending all 2 digits combinations (`00`–`99`) to each password. Then crack the SHA‑1 hash `2d5c517a4f7a14dcb38329d228a7d18a3b78ce83` using John the Ripper with a custom rule.
 
 ---
 
 ## Prerequisites
 - `seclists` installed  
 - `john` (John the Ripper) installed  
-- Permissions to edit `/usr/share/john/john-local.conf`
+- Permissions to edit `john-local.conf` 
+
+> **Note about John configuration locations**  
+> Depending on your distribution, the John configuration may be located at `/etc/john/john.conf` and/or `/usr/share/john/john.conf`. To locate the JtR install directory run:
+```bash
+locate john.conf
+```
 
 ---
 
