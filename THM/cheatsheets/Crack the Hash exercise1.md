@@ -15,7 +15,6 @@ Use the top **10,000** most used password list from [SecLists](https://github.co
 ```bash
 locate john.conf
 ```
-
 ---
 
 ## Add custom rule to john-local.conf
@@ -46,13 +45,23 @@ This rule appends two digits to each password candidate.
 / $ whereis john
 john: /opt/homebrew/bin/john
 ```
+2. Locating `john.conf` on macOS (Homebrew Install)
 
-2. Verify wordlist exists:
+When using John the Ripper installed via Homebrew, the configuration file may not appear in the expected `/usr/share/john/` location.
+
+To search for it:
+```bash
+~ $ find / -name "john.conf" 2>/dev/null
+/System/Volumes/Data/opt/homebrew/Cellar/john-jumbo/1.9.0_1/share/john/john.conf
+/opt/homebrew/Cellar/john-jumbo/1.9.0_1/share/john/john.conf
+```
+
+3. Verify wordlist exists:
 ```bash
 ls -l /usr/share/seclists/Passwords/Common-Credentials/10k-most-common.txt
 ```
 
-3. Append rule to john-local.conf:
+4. Append rule to john-local.conf:
 ```bash
 sudo bash -c 'cat >> /usr/share/john/john-local.conf' <<'EOF'
 [List.Rules:THM01]
@@ -60,19 +69,19 @@ $[0-9]$[0-9]
 EOF
 ```
 
-4. Create hash file:
+5. Create hash file:
 ```bash
 printf '2d5c517a4f7a14dcb38329d228a7d18a3b78ce83\n' > hash.txt
 ```
 
-5. Run John the Ripper:
+6. Run John the Ripper:
 ```bash
 john --wordlist=/usr/share/seclists/Passwords/Common-Credentials/10k-most-common.txt \
      --rules=THM01 \
      hash.txt
 ```
 
-6. Show cracked results:
+7. Show cracked results:
 ```bash
 john --show hash.txt
 ```
