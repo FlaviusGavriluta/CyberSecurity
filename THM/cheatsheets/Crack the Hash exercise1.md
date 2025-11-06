@@ -1,7 +1,7 @@
 # THM — Border mutation with 10k common passwords
 
 **Objective:**  
-Use the top **10,000** most used password list from [![SecLists]](https://github.com/danielmiessler/SecLists#install) (`/usr/share/seclists/Passwords/Common-Credentials/10k-most-common.txt`) and generate a *border mutation* by appending all 2 digits combinations (`00`–`99`) to each password. Then crack the SHA‑1 hash `2d5c517a4f7a14dcb38329d228a7d18a3b78ce83` using John the Ripper with a custom rule.
+Use the top **10,000** most used password list from [SecLists(https://img.shields.io/badge/SecLists-visit-blue?style=for-the-badge)](https://github.com/danielmiessler/SecLists#install) (`/usr/share/seclists/Passwords/Common-Credentials/10k-most-common.txt`) and generate a *border mutation* by appending all 2 digits combinations (`00`–`99`) to each password. Then crack the SHA‑1 hash `2d5c517a4f7a14dcb38329d228a7d18a3b78ce83` using John the Ripper with a custom rule.
 
 ---
 
