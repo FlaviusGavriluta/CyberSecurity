@@ -19,7 +19,7 @@ locate john.conf
 ---
 
 ## Add custom rule to john-local.conf
-Edit `/usr/share/john/john-local.conf` and add:
+Edit `/../john-local.conf` and add:
 
 ```ini
 [List.Rules:THM01]
@@ -31,9 +31,9 @@ This rule appends two digits to each password candidate.
 ---
 
 ## Files
-- Wordlist: `/usr/share/seclists/Passwords/Common-Credentials/10k-most-common.txt`  
+- Wordlist: `/../seclists/Passwords/Common-Credentials/10k-most-common.txt`  
 - Hash file: `hash.txt`  
-- John local rules: `/usr/share/john/john-local.conf`
+- John local rules: `/../john/john-local.conf`
 
 ---
 
