@@ -56,17 +56,22 @@ To search for it:
 /opt/homebrew/Cellar/john-jumbo/1.9.0_1/share/john/john.conf
 ```
 
-3. Verify wordlist exists:
+3. Create `john-local.conf` and add a new rule
+
+Create `john-local.conf` in the same directory as `john.conf` (system path)
 ```bash
-ls -l /usr/share/seclists/Passwords/Common-Credentials/10k-most-common.txt
+~ $ nano /opt/homebrew/Cellar/john-jumbo/1.9.0_1/share/john/john-local.conf
 ```
 
-4. Append rule to john-local.conf:
+Append rule to john-local.conf:
 ```bash
-sudo bash -c 'cat >> /usr/share/john/john-local.conf' <<'EOF'
 [List.Rules:THM01]
 $[0-9]$[0-9]
-EOF
+```
+
+4. Verify wordlist exists:
+```bash
+ls -l /usr/share/seclists/Passwords/Common-Credentials/10k-most-common.txt
 ```
 
 5. Create hash file:
