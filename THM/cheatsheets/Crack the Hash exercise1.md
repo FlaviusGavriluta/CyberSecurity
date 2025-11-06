@@ -39,12 +39,20 @@ This rule appends two digits to each password candidate.
 
 ## Commands
 
-1. Verify wordlist exists:
+1. Verify John location:
+```bash
+/ $ which john
+/opt/homebrew/bin/john
+/ $ whereis john
+john: /opt/homebrew/bin/john
+```
+
+2. Verify wordlist exists:
 ```bash
 ls -l /usr/share/seclists/Passwords/Common-Credentials/10k-most-common.txt
 ```
 
-2. Append rule to john-local.conf:
+3. Append rule to john-local.conf:
 ```bash
 sudo bash -c 'cat >> /usr/share/john/john-local.conf' <<'EOF'
 [List.Rules:THM01]
@@ -52,19 +60,19 @@ $[0-9]$[0-9]
 EOF
 ```
 
-3. Create hash file:
+4. Create hash file:
 ```bash
 printf '2d5c517a4f7a14dcb38329d228a7d18a3b78ce83\n' > hash.txt
 ```
 
-4. Run John the Ripper:
+5. Run John the Ripper:
 ```bash
 john --wordlist=/usr/share/seclists/Passwords/Common-Credentials/10k-most-common.txt \
      --rules=THM01 \
      hash.txt
 ```
 
-5. Show cracked results:
+6. Show cracked results:
 ```bash
 john --show hash.txt
 ```
