@@ -45,6 +45,7 @@ This rule appends two digits to each password candidate.
 / $ whereis john
 john: /opt/homebrew/bin/john
 ```
+
 2. Locating `john.conf` on macOS (Homebrew Install)
 
 When using John the Ripper installed via Homebrew, the configuration file may not appear in the expected `/usr/share/john/` location.
@@ -92,10 +93,25 @@ wordlists $ ls -l ~/CyberSecurity/wordlists/SecLists/Passwords/Common-Credential
 -rw-r--r--  1 flavius.gavriluta  staff  73017 Nov  7 08:22 /Users/flavius.gavriluta/CyberSecurity/wordlists/SecLists/Passwords/Common-Credentials/10k-most-common.txt
 ```
 
-5. Create hash file:
+---
+
+## Task sentence
+Now let's crack the hash `2d5c517a4f7a14dcb38329d228a7d18a3b78ce83`, we just have to write the hash in a text file and specify the hash type, the wordlist and our rule name.
+
+1. Create hash file:
 ```bash
-printf '2d5c517a4f7a14dcb38329d228a7d18a3b78ce83\n' > hash.txt
+TryHackMe $ printf '2d5c517a4f7a14dcb38329d228a7d18a3b78ce83\n' > hash.txt
+
+# or
+TryHackMe $ nano hash.txt
 ```
+paste' 2d5c517a4f7a14dcb38329d228a7d18a3b78ce83'
+ctrl + x, press y and Enter to save the file.
+
+---
+
+## Expected behavior
+John will generate candidates by appending `00`–`99` to each password from the 10k list. If the plaintext matches the SHA‑1 hash, `john --show` will display it.
 
 6. Run John the Ripper:
 ```bash
@@ -108,16 +124,6 @@ john --wordlist=/usr/share/seclists/Passwords/Common-Credentials/10k-most-common
 ```bash
 john --show hash.txt
 ```
-
----
-
-## Task sentence
-Now let's crack the hash `2d5c517a4f7a14dcb38329d228a7d18a3b78ce83`, we just have to write the hash in a text file and specify the hash type, the wordlist and our rule name.
-
----
-
-## Expected behavior
-John will generate candidates by appending `00`–`99` to each password from the 10k list. If the plaintext matches the SHA‑1 hash, `john --show` will display it.
 
 ---
 
