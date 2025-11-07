@@ -148,10 +148,10 @@ TryHackMe $ rm /Users/flavius.gavriluta/.john/john.rec
 TryHackMe $ john THM.txt --format=raw-sha1 --wordlist=~/CyberSecurity/wordlists/SecLists/Passwords$
 ```
    
-7. Show cracked results:
+3. Show cracked results:
 ```bash
 john --show THM.txt
-?:moonligh56
+moonligh56
 ```
 
 ---
