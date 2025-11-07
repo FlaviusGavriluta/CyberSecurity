@@ -46,3 +46,25 @@ Ensure the rule block in john-local.conf follows John syntax. If the Mentalist o
 [List.Rules:MENTALIST]
 T1ss$
 ```
+
+---
+
+## Expected behavior
+
+1. Create a Hash file:
+```bash
+cheatsheets $ printf 'ed91365105bba79fdab20c376d83d752\n' > exercise1-hash.txt
+```
+
+2. Run John the Ripper:
+```bash
+`cheatsheets $ john exercise1-hash.txt --format=raw-md5 --wordlist=~/CyberSecurity/wordlists/misc/dogs.txt --rules=MENTALIST
+
+Using default input encoding: UTF-8
+Loaded 1 password hash (Raw-MD5 [MD5 128/128 ASIMD 4x2])
+Press 'q' or Ctrl-C to abort, almost any other key for status
+mOlo$$u$         (?)
+1g 0:00:00:00 DONE (2025-11-07 20:18) 100.0g/s 24200p/s 24200c/s 24200C/s aDvanced..yOrk$hire
+Use the "--show --format=Raw-MD5" options to display all of the cracked passwords reliably
+Session completed
+```
