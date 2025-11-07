@@ -151,7 +151,7 @@ TryHackMe $ john THM.txt --format=raw-sha1 --wordlist=~/CyberSecurity/wordlists/
 3. Show cracked results:
 ```bash
 john --show THM.txt
-moonligh56
+**moonligh56**
 ```
 
 ---
