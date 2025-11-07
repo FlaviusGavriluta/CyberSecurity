@@ -35,7 +35,7 @@ python3.11 -m venv .venv
 source .venv/bin/activate
 ```
 
-# 5) Upgrade pip and install requirements, then install Mentalist
+## 5) Upgrade pip and install requirements, then install Mentalist
 ```bash
 (.venv) CyberSecurity $ cd ~/CyberSecurity/mentalist
 pip install --upgrade pip setuptools wheel
@@ -45,17 +45,17 @@ pip install --upgrade pip setuptools wheel
 pip install -r requirements.txt || true python3.11 setup.py install
 ```
 
-# 6) Run Mentalist (GUI)
+## 6) Run Mentalist (GUI)
 ```bash
 (.venv) mentalist $ mentalist
 ```
 
-# fallback:
+## fallback:
 ```bash
 python3.11 -m mentalist
 ```
 
-# 7) Unninstall
+## 7) Unninstall
 ```bash
 rm -rf ~/CyberSecurity/mentalist ~/CyberSecurity/.mentalist-venv
 ```
