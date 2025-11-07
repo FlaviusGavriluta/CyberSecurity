@@ -69,9 +69,27 @@ Append rule to john-local.conf:
 $[0-9]$[0-9]
 ```
 
-4. Verify wordlist exists:
+4. Install SecLists:
+
+[SecLists](https://github.com/danielmiessler/SecLists#install) — quick install commands (pick the method appropriate for your OS).
+
+---
+
 ```bash
-ls -l /usr/share/seclists/Passwords/Common-Credentials/10k-most-common.txt
+wordlists $ git clone https://github.com/danielmiessler/SecLists.git
+Cloning into 'SecLists'...
+remote: Enumerating objects: 50827, done.
+remote: Counting objects: 100% (28/28), done.
+remote: Compressing objects: 100% (22/22), done.
+remote: Total 50827 (delta 21), reused 6 (delta 6), pack-reused 50799 (from 2)
+Receiving objects: 100% (50827/50827), 2.58 GiB | 15.07 MiB/s, done.
+Resolving deltas: 100% (36418/36418), done.
+Updating files: 100% (6239/6239), done.
+
+# common install path (example)
+wordlists $ ls -l ~/CyberSecurity/wordlists/SecLists/Passwords/Common-Credentials/10k-most-common.txt
+
+-rw-r--r--  1 flavius.gavriluta  staff  73017 Nov  7 08:22 /Users/flavius.gavriluta/CyberSecurity/wordlists/SecLists/Passwords/Common-Credentials/10k-most-common.txt
 ```
 
 5. Create hash file:
