@@ -113,16 +113,25 @@ ctrl + x, press y and Enter to save the file.
 ## Expected behavior
 John will generate candidates by appending `00`–`99` to each password from the 10k list. If the plaintext matches the SHA‑1 hash, `john --show` will display it.
 
-6. Run John the Ripper:
+1. Find the Hash-Type:
 ```bash
-john --wordlist=/usr/share/seclists/Passwords/Common-Credentials/10k-most-common.txt \
-     --rules=THM01 \
-     hash.txt
-```
-
-7. Show cracked results:
-```bash
-john --show hash.txt
+TryHackMe $ haiti 2d5c517a4f7a14dcb38329d228a7d18a3b78ce83   
+SHA-1 [HC: 100] [JtR: raw-sha1]
+RIPEMD-160 [HC: 6000] [JtR: ripemd-160]
+Double SHA-1 [HC: 4500]
+Ruby on Rails Restful Auth (one round, no sitekey) [HC: 27200]
+MySQL5.x [HC: 300] [JtR: mysql-sha1]
+MySQL4.1 [HC: 300] [JtR: mysql-sha1]
+Umbraco HMAC-SHA1 [HC: 24800]
+WPA-EAPOL-PBKDF2 [HC: 2500]
+WPA-EAPOL-PMK [HC: 2501]
+Haval-160 (3 rounds) [JtR: dynamic_190]
+Haval-160 (4 rounds) [JtR: dynamic_200]
+Haval-160 (5 rounds) [JtR: dynamic_210]
+HAS-160
+LinkedIn [HC: 190] [JtR: raw-sha1-linkedin]
+Skein-256(160)
+Skein-512(160)
 ```
 
 ---
