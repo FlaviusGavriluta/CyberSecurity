@@ -134,6 +134,26 @@ Skein-256(160)
 Skein-512(160)
 ```
 
+2.  Run John the Ripper:
+```bash
+TryHackMe $ john THM.txt --format=raw-sha1 --wordlist=~/CyberSecurity/wordlists/SecLists/Passwords/Common-Credentials/10k-most-common.txt --rules=THM01
+Using default input encoding: UTF-8
+Loaded 1 password hash (Raw-SHA1 [SHA1 1/1 AVX2 8x])
+Warning: poor OpenMP scalability for this hash type, consider --fork=2
+Will run 2 OpenMP threads
+Crash recovery file is locked: /opt/john/john.rec
+TryHackMe $ rm /Users/flavius.gavriluta/.john/john.rec
+
+#Run again John the Ripper:
+TryHackMe $ john THM.txt --format=raw-sha1 --wordlist=~/CyberSecurity/wordlists/SecLists/Passwords$
+```
+   
+7. Show cracked results:
+```bash
+john --show THM.txt
+?:moonligh56
+```
+
 ---
 
 ## Troubleshooting
