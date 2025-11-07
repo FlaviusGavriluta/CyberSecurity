@@ -7,7 +7,7 @@ This guide installs **Mentalist** with working GUI (Tk) on macOS.
 - Homebrew
 
 ## Install steps
-```bash
+
 # 1) Install Python 3.11 and Tk
 brew install python@3.11
 brew install tcl-tk
