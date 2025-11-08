@@ -31,11 +31,11 @@ bcrypt - 3200
 
 3. Run Hashcat:
 ```bash
-`cheatsheets $ hashcat -m 3200 hash /usr/share/wordlists/rockyou.txt
+cheatsheets $ hashcat -m 3200 hash /usr/share/wordlists/rockyou.txt
 ```
 
 4. Show the password:
 ```bash
-`cheatsheets $ hashcat -m 3200 hash /usr/share/wordlists/rockyou.txt --show
+cheatsheets $ hashcat -m 3200 hash /usr/share/wordlists/rockyou.txt --show
 2y$12$Dwt1BZj6pcyc3Dy1FWZ5ieeUznr71EeNkJkUlypTsgbX1H68wsRom:bleh
 ```
