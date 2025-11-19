@@ -100,3 +100,6 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 464.20 seconds
 ```
 
+### ✔ How we got the answer
+
+Nmap output showed **5 open ports: 135, 139, 445, 3389, 49152.**
