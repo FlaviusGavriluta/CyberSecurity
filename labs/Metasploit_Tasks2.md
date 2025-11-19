@@ -1,7 +1,7 @@
 # ✅ ANSWER THE QUESTIONS BELOW:
 
 
-## 🧠 PART 1 — Scan open ports
+## 🧠 PART 1 — Scan open ports (answer: 5)
 
 ### How many ports are open on the target system?
 
