@@ -37,4 +37,5 @@ PORT      STATE SERVICE
 49152/tcp open  unknown
 MAC Address: 12:DB:T5:2S:E8:3W (Unknown)
 
-Nmap done: 1 IP address (1 host up) scanned in 64.19 seconds```
+Nmap done: 1 IP address (1 host up) scanned in 64.19 seconds
+```
