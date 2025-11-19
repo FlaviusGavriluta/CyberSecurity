@@ -62,7 +62,7 @@ Stats: 0:02:02 elapsed; 0 hosts completed (1 up), 1 undergoing SYN Stealth Scan
 SYN Stealth Scan Timing: About 35.64% done; ETC: 05:23 (0:03:38 remaining)
 Stats: 0:02:05 elapsed; 0 hosts completed (1 up), 1 undergoing SYN Stealth Scan
 SYN Stealth Scan Timing: About 36.61% done; ETC: 05:23 (0:03:35 remaining)
-Nmap scan report for 10.64.179.238
+Nmap scan report for 190.161.214.185
 Host is up (0.00055s latency).
 Not shown: 65526 closed ports
 PORT      STATE SERVICE            VERSION
@@ -76,7 +76,7 @@ Service Info: Host: JON-PC; OS: Windows; CPE: cpe:/o:microsoft:windows
 
 Host script results:
 |_clock-skew: mean: 1h28m05s, deviation: 3h00m00s, median: -1m55s
-|_nbstat: NetBIOS name: JON-PC, NetBIOS user: <unknown>, NetBIOS MAC: 0a:ff:e0:21:35:df (unknown)
+|_nbstat: NetBIOS name: JON-PC, NetBIOS user: <unknown>, NetBIOS MAC: 12:DB:T5:2S:E8:3W (unknown)
 | smb-os-discovery: 
 |   OS: Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1)
 |   OS CPE: cpe:/o:microsoft:windows_7::sp1:professional
