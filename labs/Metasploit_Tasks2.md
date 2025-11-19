@@ -104,6 +104,7 @@ Nmap done: 1 IP address (1 host up) scanned in 464.20 seconds
 
 Nmap output showed **5 open ports: 135, 139, 445, 3389, 49152.**
 
+⸻
 
 ## 🧠 PART 2 — Discover the NetBIOS name (answer: ACME IT SUPPORT)
 
@@ -170,3 +171,38 @@ msf6 auxiliary(scanner/smb/smb_version) > run
 ### ✔ Result showed:
 NetBIOS name: **ACME IT SUPPORT**
 
+⸻
+
+## 🧠 PART 3 — Check port 8000 service (answer: webfs/1.21)
+
+### What is running on port 8000?
+
+### ✔ Nmap command
+```bash
+msf6 > nmap -sC -sV -p 8000 10.64.152.38 -oN port8000.txt
+[*] exec: nmap -sC -sV -p 8000 10.64.152.38 -oN port8000.txt
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2025-11-19 06:37 GMT
+mass_dns: warning: Unable to open /etc/resolv.conf. Try using --system-dns or specify valid servers with --dns-servers
+mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers
+Nmap scan report for 190.161.214.185
+Host is up (0.00040s latency).
+
+PORT     STATE SERVICE VERSION
+8000/tcp open  http    WebFS httpd 1.21
+|_http-server-header: webfs/1.21
+|_http-title: Site doesn't have a title (text/plain).
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 11.88 seconds
+```
+
+### ✔ Output example:
+8000/tcp open  http     webfs/1.21
+
+### ✔ Meaning
+Port 8000 is running the lightweight web service.
+webfs = a very small web server.
+Version 1.21 is running.
+
+⸻
