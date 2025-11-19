@@ -103,3 +103,70 @@ Nmap done: 1 IP address (1 host up) scanned in 464.20 seconds
 ### ✔ How we got the answer
 
 Nmap output showed **5 open ports: 135, 139, 445, 3389, 49152.**
+
+
+## 🧠 PART 2 — Discover the NetBIOS name (answer: ACME IT SUPPORT)
+
+### What NetBIOS name can you see?
+
+We check SMB info using a Metasploit auxiliary scanner.
+
+### ✔ In msfconsole
+```
+root@ip-160-24-176-214:~# msfconsole
+This copy of metasploit-framework is more than two weeks old.
+ Consider running 'msfupdate' to update to the latest version.
+Metasploit tip: Use the 'capture' plugin to start multiple 
+authentication-capturing and poisoning services
+                                                  
+ _                                                    _
+/ \    /\         __                         _   __  /_/ __
+| |\  / | _____   \ \           ___   _____ | | /  \ _   \ \
+| | \/| | | ___\ |- -|   /\    / __\ | -__/ | || | || | |- -|
+|_|   | | | _|__  | |_  / -\ __\ \   | |    | | \__/| |  | |_
+      |/  |____/  \___\/ /\ \\___/   \/     \__|    |_\  \___\
+
+
+       =[ metasploit v6.4.55-dev-                         ]
++ -- --=[ 2502 exploits - 1287 auxiliary - 431 post       ]
++ -- --=[ 1616 payloads - 49 encoders - 13 nops           ]
++ -- --=[ 9 evasion                                       ]
+
+Metasploit Documentation: https://docs.metasploit.com/
+```
+
+### Then:
+```
+msf6 > search smb_version
+
+Matching Modules
+================
+
+   #  Name                               Disclosure Date  Rank    Check  Description
+   -  ----                               ---------------  ----    -----  -----------
+   0  auxiliary/scanner/smb/smb_version  .                normal  No     SMB Version Detection
+
+
+Interact with a module by name or index. For example info 0, use 0 or use auxiliary/scanner/smb/smb_version
+
+msf6 > use 0
+msf6 auxiliary(scanner/smb/smb_version) > set RHOSTS 190.161.214.185
+rhost => 190.161.214.185
+msf6 auxiliary(scanner/smb/smb_version) > run
+[*] 190.161.214.185:445     - SMB Detected (versions:1, 2) (preferred dialect:SMB 2.1) (signatures:optional) (uptime:1h 1m 54s) (guid:{8efaf667-0da8-4313-9506-95fc4a41bcc1} - ) (authentication domain:JON-PC)
+[*] Discovered NetBIOS on 190.161.214.185:137 (JON-PC::U :WORKGROUP::G :JON-PC::U :WORKGROUP::G :WORKGROUP::U :__ACME IT SUPPORT__::G :12:DB:T5:2S:E8:3W)
+[+] 190.161.214.185:445     -   Host is running Windows 7  Professional  SP1  (build:7601)
+[*] 190.161.214.185         - Scanned 1 of 1 hosts (100% complete)
+[*] Auxiliary module execution completed
+```
+
+### ✔ What this does
+	•	Queries the SMB service
+	•	Extracts:
+	•	OS version
+	•	SMB version
+	•	NetBIOS name
+
+### ✔ Result showed:
+NetBIOS name: **ACME IT SUPPORT**
+
