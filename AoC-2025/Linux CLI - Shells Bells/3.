@@ -1,0 +1,35 @@
+# 🥚 Easter Egg #2
+
+**Clue:**  
+“The tree shows today; the rings remember yesterday.  
+Read the ledger’s older pages.”
+
+**Interpretation:**  
+- Refers to the history of the project — Git logs and commits.  
+- We need to explore the `.git` directory to find the hidden fragment.
+
+**Location:** `/home/eddi_knapp/.secret_git/`
+
+**Steps taken:**
+1. Switched to the `eddi_knapp` user:
+   ```bash
+   su eddi_knapp
+   ```
+2. Navigated to the secret Git repository:
+   ```bash
+   cd /home/eddi_knapp/.secret_git
+   ```
+3. Checked branch and commit history:
+   ```bash
+   git branch
+   git log
+   git show d12875c8b62e089320880b9b7e41d6765818af3d
+   ```
+4. Found the second passcode fragment in the commit:
+   ```text
+   PASSFRAG2: -1s-
+   ```
+
+**Notes:**
+- This is the second fragment of the three required to unlock McSkidy’s hidden vault.
+- Keep fragments in order as instructed in `read-me-please.txt`.
